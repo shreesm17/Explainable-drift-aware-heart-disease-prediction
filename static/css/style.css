@@ -1,0 +1,55 @@
+body {
+    background: #f3f6fb;
+    font-family: Arial, sans-serif;
+    color: #263445;
+}
+
+h1 {
+    color: #153e63;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1000px;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #34495e;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    border-color: #2878b5;
+    box-shadow: 0 0 0 0.2rem rgba(40, 120, 181, 0.15);
+}
+
+.btn-primary {
+    background-color: #1769aa;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #104d80;
+}
+
+#result {
+    line-height: 1.6;
+}
+
+.alert {
+    border-radius: 10px;
+}

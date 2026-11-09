@@ -1,0 +1,31 @@
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+env/
+
+# Logs
+logs/
+*.log
+
+# Prediction logs
+data/prediction_logs.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak

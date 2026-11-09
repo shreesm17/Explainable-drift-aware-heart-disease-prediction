@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1"><br></p>
+<p class="p2">&lt;!DOCTYPE html&gt;</p>
+<p class="p2">&lt;html lang="en"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2">&lt;head&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;title&gt;Heart Disease Prediction&lt;/title&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Bootstrap --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;link</p>
+<p class="p2"><span class="Apple-converted-space">        </span>href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"</p>
+<p class="p2"><span class="Apple-converted-space">        </span>rel="stylesheet"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Custom CSS --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="/static/css/style.css"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Chart.js --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p2">&lt;/head&gt;</p>
+<p class="p1"><br></p>
+<p class="p2">&lt;body&gt;</p>
+<p class="p1"><br></p>
+<p class="p2">&lt;div class="container py-5"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Main Heading --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="text-center mb-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;h1&gt;Heart Disease Prediction&lt;/h1&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;p&gt;Explainable AI-powered health risk prediction&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Patient Prediction Form --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="card shadow p-4"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;h4 class="mb-3"&gt;Enter Patient Details&lt;/h4&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;form id="predictionForm"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;div class="row" id="formFields"&gt;&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;button type="submit" class="btn btn-primary w-100 mt-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>Predict</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/form&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;div id="result" class="mt-4"&gt;&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Individual Explanation --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="card shadow p-4 mt-4"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;h4&gt;Individual Prediction Explanation&lt;/h4&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;p&gt;Feature contributions for the selected patient.&lt;/p&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;canvas id="localChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Global Explanation --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="card shadow p-4 mt-4"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;h4&gt;Global Feature Importance&lt;/h4&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;p&gt;Overall feature importance learned by the EBM model.&lt;/p&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;canvas id="globalChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;button id="loadGlobal" class="btn btn-outline-primary mt-3"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>Load Global Feature Importance</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Medical Disclaimer --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;p class="text-center mt-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>Educational prediction only. Not a medical diagnosis.</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;/p&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;!-- Dynamic Drift Monitoring --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;div class="card shadow-sm p-4 mt-4"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;h3 class="mb-3"&gt;Model Drift Monitoring&lt;/h3&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;p class="text-muted"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>Compare incoming prediction data with the original</p>
+<p class="p2"><span class="Apple-converted-space">            </span>training dataset using Evidently AI.</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;!-- Current Status --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class="mb-3"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;span&gt;Current Drift Status: &lt;/span&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;span id="driftStatus" class="badge bg-secondary"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>Not Checked</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/span&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;!-- Main Drift Metrics --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class="row text-center"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;div class="col-md-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h6&gt;Prediction Records&lt;/h6&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h3 id="predictionCount"&gt;0 predictions&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;div class="col-md-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h6&gt;Drift Percentage&lt;/h6&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h3 id="driftPercentage"&gt;--&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;div class="col-md-4"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h6&gt;Alert Threshold&lt;/h6&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h3 id="driftThreshold"&gt;20%&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;hr&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;!-- Additional Metrics --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;div class="row text-center"&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;div class="col-md-6"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h6&gt;Drifted Features&lt;/h6&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h3 id="driftedFeatures"&gt;--&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;div class="col-md-6"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h6&gt;Monitoring Tool&lt;/h6&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span>&lt;h3 id="monitoringTool"&gt;Evidently AI&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;hr&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;!-- Last Analysis Time --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;p class="text-muted"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span>Last Analysis:</p>
+<p class="p2"><span class="Apple-converted-space">            </span>&lt;span id="driftTimestamp"&gt;Not yet analyzed&lt;/span&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p1"><br></p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;!-- Status Message --&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span>&lt;p id="driftError" class="mt-3"&gt;&lt;/p&gt;</p>
+<p class="p1"><br></p>
+<p class="p2"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2">&lt;/div&gt;</p>
+<p class="p1"><br></p>
+<p class="p2">&lt;!-- JavaScript --&gt;</p>
+<p class="p2">&lt;script src="/static/js/script.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><br></p>
+<p class="p2">&lt;/body&gt;</p>
+<p class="p2">&lt;/html&gt;</p>
+</body>
+</html>
